@@ -13,7 +13,7 @@ int main(void)
 
 	f = _strchr(s, '1');
 
-	if (f !=NULL)
+	if (f != NULL)
 	{
 		printf("%s\n", f);
 	}
