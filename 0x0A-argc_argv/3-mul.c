@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "main.h"
 #include <stdlib.h>
+
 /**
  * main - multiply 2 num
  * @argc: num of argument
