@@ -7,19 +7,19 @@
  * @argv: array argument
  * Return: always 0.
  */
-int main(int argc, char *argv)
+int main(int argc, char *argv[])
 {
-	int x, y;
+	int m;
 
-	if (argc < 3)
+	if (argc != 3)
 	{
-		printf("error\n");
+		printf("Error\n");
 		return (1);
 	}
-
-	x = atoi(argv[1]);
-	y = atoi(argv[2]);
-	printf("%d\n", x * y);
-
+	else
+	{
+		m = (atoi(argv[1]) * atoi(argv[2]));
+		printf("%d\n", m);
+	}
 	return (0);
 }
