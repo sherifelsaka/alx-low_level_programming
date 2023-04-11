@@ -3,7 +3,7 @@
 /**
  * _strdup - returns a pointer to a new location
  * @str: the source string
- * Return: return a pointer to the string 
+ * Return: return a pointer to the string
  */
 char *_strdup(char *str)
 {
