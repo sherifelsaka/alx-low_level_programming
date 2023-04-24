@@ -2,15 +2,15 @@
 /**
  * handle_print - Prints an argument based on its type
  * @fmt: Formatted string in which to print the arguments.
- * @list: List of arguments to be printed.
+ * @list: List of argu
  * @ind: ind.
- * @buffer: Buffer array to handle print.
+ * @buffer: Buffer array
  * @flags: Calculates active flags
- * @width: get width.
- * @precision: Precision specification
+ * @width: width.
+ * @precision: Precision
  * @size: Size specifier
- *
  * Return: 1 or 2;
+ * Owner by Abdelrahman Sayed & Sherif Elsaka
  */
 int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 	int flags, int width, int precision, int size)
