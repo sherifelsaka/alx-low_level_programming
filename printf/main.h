@@ -1,6 +1,5 @@
 #ifndef MAIN_H
 #define MAIN_H
-
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -20,11 +19,10 @@
 #define S_SHORT 1
 
 /**
- * struct fmt - represents a format specifier and its associated function.
+ * struct fmt - Struct op
  *
- * @fmt: a character that represents the format specifier.
- * @fn: a function pointer that points to the function
- *      that handles the corresponding format specifier.
+ * @fmt: The format.
+ * @fn: The function associated.
  */
 struct fmt
 {
@@ -34,9 +32,9 @@ struct fmt
 
 
 /**
- * typedef struct fmt fmt_t - creates a type alias fmt_t for struct fmt.
+ * typedef struct fmt fmt_t - Struct op
  *
- * @fmt: a character that represents the format specifier.
+ * @fmt: The format.
  * @fm_t: The function associated.
  */
 typedef struct fmt fmt_t;
@@ -109,7 +107,6 @@ char buffer[],
 	int flags, int width, int precision, int size);
 
 /****************** UTILS ******************/
-
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
@@ -117,4 +114,4 @@ int is_digit(char);
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 
-#endif
+#endif /* MAIN_H */
