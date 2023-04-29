@@ -8,6 +8,7 @@
  *
  * Return: If the list is not looped - 0.
  *         Otherwise - the number of unique nodes in the list.
+ * Owner By Sherif Elsaka
  */
 size_t looped_listint_len(const listint_t *head)
 {
