@@ -1,65 +1,66 @@
 #include "lists.h"
 
 /**
- * looped_listint_len - Counts the number of
- * unique nodes in a looped listint_t linked list.
- * @head: A pointer to the head of the listint_t to check.
- * Return: If the list is not looped - 0.
- * Otherwise - the number of unique nodes in the list.
- * Owner by Sherif Elsaka
+ * _realloc_ptr_listint - Reallocates memory for an array of pointers
+ * to the nodes in a linked list.
+ * @list: The old list to append.
+ * @size: Size of the new list (always one more than the old list).
+ * @new_node: New node to add to the list.
+ * Return: Pointer to the new list.
+ * Owner By Sherif Elsaka
  */
-size_t looped_listint_len(const listint_t *head)
+const listint_t **_realloc_ptr_listint(const listint_t **list,
+		size_t size, const listint_t *new_node)
 {
-	const listint_t *tortoise = head;
-	const listint_t *hare = head;
-	size_t count = 1;
+	const listint_t **new_list = malloc(size * sizeof(listint_t *));
+	size_t i = 0;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
-
-	do {
-		tortoise = tortoise->next;
-		hare = hare->next->next;
-
-		if (hare == NULL || hare->next == NULL)
-			return (0);
-
-	} while (tortoise != hare);
-
-	tortoise = tortoise->next;
-
-	while (tortoise != hare)
+	if (new_list == NULL)
 	{
-		tortoise = tortoise->next;
-		count++;
+		free(list);
+		exit(98);
 	}
 
-	return (count);
+	for (; i < size - 1; i++)
+		new_list[i] = list[i];
+
+	new_list[size - 1] = new_node;
+	free(list);
+
+	return (new_list);
 }
 
 /**
- * print_listint_safe - Prints a listint_t list safely.
- * @head: A pointer to the head of the listint_t list.
+ * print_listint_safe - Prints a listint_t linked list.
+ * @head: Pointer to the start of the list.
  * Return: The number of nodes in the list.
- * Owner by Sherif Elsaka
+ * Owner By Sherif Elsaka
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
-	const size_t len = looped_listint_len(head);
+	const listint_t **visited_nodes = NULL;
+	size_t num_nodes = 0;
+	size_t i = 0;
 
-	if (head == NULL)
-		return (0);
-
-	while (head != NULL && (len == 0 || count < len))
+	while (head != NULL)
 	{
+		for (; i < num_nodes; i++)
+		{
+			if (head == visited_nodes[i])
+			{
+				printf("-> [%p] %d\n", (void *)head, head->n);
+				free(visited_nodes);
+				return (num_nodes);
+			}
+		}
+
+		num_nodes++;
+		visited_nodes = _realloc_ptr_listint(visited_nodes, num_nodes, head);
 		printf("[%p] %d\n", (void *)head, head->n);
 		head = head->next;
-		count++;
 	}
 
-	if (len > 0)
-		printf("-> [%p] %d\n", (void *)head, head->n);
+	free(visited_nodes);
 
-	return (count);
+	return (num_nodes);
 }
